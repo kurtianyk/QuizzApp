@@ -1,0 +1,22 @@
+{
+  "name": "leobit",
+  "description": "quiz app",
+  "main": "server.js",
+  "authors": [
+    "Oleh Kurtianyk"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.6",
+    "bootstrap": "boostrap#^3.3.7",
+    "angular-ui-router": "^1.0.6"
+  }
+}

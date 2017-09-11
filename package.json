@@ -1,0 +1,25 @@
+{
+  "name": "leobit",
+  "version": "1.0.0",
+  "description": "quiz app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kurtianyk/leobit.git"
+  },
+  "author": "Oleh Kurtianyk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kurtianyk/leobit/issues"
+  },
+  "homepage": "https://github.com/kurtianyk/leobit#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.10.8",
+    "bower": "^1.8.0"
+  }
+}
