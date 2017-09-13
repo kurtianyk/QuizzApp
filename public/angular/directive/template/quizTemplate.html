@@ -1,0 +1,34 @@
+<div class="quiz-area" ng-show="inProgress">
+	<div ng-show="!quizOver">
+		<h2 id="question">{{question}}</h2>
+		<h3 id="hint">{{hint}}</h3>
+		<ul id="options">
+
+		<label ng-if="options.length == 0">
+					<input type="{{type}}" name="answer">
+		</label>
+			<li ng-if="options.length !== 0" ng-repeat="option in options">
+				<label>
+					<input type="{{type}}" name="answer" value="{{option}}">
+					{{option}}
+				</label>
+			</li>
+		</ul>
+
+		<div>
+			<button ng-click="nextQuestion()" class="next-question">Next</button>
+		</div>
+	</div>
+
+	<div ng-show="quizOver">
+		<h2>Quiz is over</h2>
+		<h3>{{score}}</h3>
+		<button ng-click="reset()">Play again</button>
+	</div>
+
+</div>
+
+<div class="intro" ng-show="!inProgress">
+	<p>{{quiz}}</p>
+	<button id="startQuiz" ng-click="start()">Start the Quiz</button>
+</div>

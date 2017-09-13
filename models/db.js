@@ -40,8 +40,11 @@ var resultsSchema = new mongoose.Schema({
 		firsname : String,
 		lastname: String
 	},
+	experience: {
+		type: String
+	},
 	result: {
-		type: Number
+		type: String
 	},
     created_at: {
         type: Date,

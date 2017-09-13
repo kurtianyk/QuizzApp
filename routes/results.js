@@ -3,14 +3,28 @@ var Result = mongoose.model('Result');
 
 exports.addResult = function(req, res){
 	var newResult = new Result();
+	var score = 0;
+	
+	req.body.forEach(function(item, i, arr) {
 
-		// TODO : do add real name, comes from front-end
-	newResult.username.firsname = req.body;
-	newResult.username.lastname = req.body;
+ 	if(i == 0){
+ 	 	var name = item.choise.toString().split(' ');
+ 	 	newResult.username.firsname = name[0];
+ 	 	newResult.username.lastname = name[1];
+ 	} else if(i == 1){
+ 	 	newResult.experience = item.choise;
+ 	}
+ 	else{
+ 	 	if(JSON.stringify(item.choise) == JSON.stringify(item.TrueAnswer) ){
+ 	 		score++;
+ 	 	}
+ 	}
 
-	//TODO: calculation of the score (must be a number)
+ 	if(i == req.body.length -1){
+ 	 	newResult.result = score;
+ 	}
 
-	newResult.result = score;
+	});
 	
 	newResult.save(function(err,savedResult){
        if(err){
