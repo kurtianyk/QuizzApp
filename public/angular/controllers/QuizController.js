@@ -25,8 +25,6 @@ app.directive('quiz', function($http, API_URL, quizFactory,$interval) {
 				location.reload();
 			}
 
-			// TODO timer
-
 			scope.Quizname = quizFactory.getQuizname();
 			scope.Timelimit = quizFactory.getTimelimit();
 
@@ -108,10 +106,6 @@ app.directive('quiz', function($http, API_URL, quizFactory,$interval) {
 				scope.id++;
 				scope.getQuestion();
 			}
-
-
-
-
 		}
 	}
 });
