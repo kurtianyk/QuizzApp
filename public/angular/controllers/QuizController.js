@@ -39,6 +39,18 @@ app.directive('quiz', function($http, API_URL, quizFactory,$interval) {
                 }, 1000);
             };
 
+            scope.StartTimer = function () {
+                scope.Message = "";
+
+                  scope.interval =  $interval(function () {
+                    var time = scope.timerQ--;
+                    scope.Message = "Time left " + time + " for this question";
+                    if(time == 0){
+                    	scope.nextQuestion();
+                    }
+                }, 1000);
+            };
+
             scope.endQuiz = function () {
             		$http({
       					method: 'POST',
@@ -74,17 +86,6 @@ app.directive('quiz', function($http, API_URL, quizFactory,$interval) {
 				}
 			};
 
-			scope.StartTimer = function () {
-                scope.Message = "";
-
-                  scope.interval =  $interval(function () {
-                    var time = scope.timerQ--;
-                    scope.Message = "Time left " + time + " for this question";
-                    if(time == 0){
-                    	scope.nextQuestion();
-                    }
-                }, 1000);
-            };
 
 			scope.nextQuestion = function() {
 				scope.data[scope.id].choise = [];

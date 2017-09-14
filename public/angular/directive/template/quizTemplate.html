@@ -1,6 +1,6 @@
 <div class="greetings-form">
 
-	<div class="timer">
+	<div class="timer" ng-show="!quizOver">
 		<div class="global-timer"> {{ QuizMessage }}</div>
 		<div class="local-timer">{{Message}}</div>
 	</div>
@@ -9,8 +9,6 @@
 	<div ng-show="!quizOver">
 
 	 <form class="form-data">
-<!-- 		<h2 id="question">{{question}}</h2>
-		<h3 id="hint">{{hint}}</h3> -->
 		<h3 class="quiz-name">{{question}}</h3>
           <p class="hint">{{hint}}</p>
 		<ul id="options">
@@ -31,12 +29,7 @@
 		</div>
 	</div>
 	</form>
-	<!-- <div ng-show="quizOver">
-		<h2>Quiz is over</h2>
-		<h3>{{score}}</h3>
-		<button ng-click="reset()">Play again</button>
-	</div> -->
-
+	
 <div ng-show="quizOver" class="body-greet">
     <form class="form-data__greetings">
       <h3>Quiz is over!</h3>
