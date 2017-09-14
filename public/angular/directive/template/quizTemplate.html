@@ -1,13 +1,17 @@
+<div class="index-body">
 <div> {{ Quizname }}</div>
 <div class="quiz-area" ng-show="inProgress">
 	<div ng-show="!quizOver">
 	<div> {{ QuizMessage }}</div>
-		<h2 id="question">{{question}}</h2>
-		<h3 id="hint">{{hint}}</h3>
+	 <form class="form-data">
+<!-- 		<h2 id="question">{{question}}</h2>
+		<h3 id="hint">{{hint}}</h3> -->
+		<h3>{{question}}<span> *</span></h3>
+          <p>{{hint}}</p>
 		<ul id="options">
 		<div>{{Message}}</div>
 		<label ng-if="options.length == 0">
-					<input type="{{type}}" name="answer">
+					<input type="{{type}}" name="answer" placeholder="My answer">
 		</label>
 			<li ng-if="options.length !== 0" ng-repeat="option in options">
 				<label>
@@ -17,20 +21,32 @@
 			</li>
 		</ul>
 
-		<div>
-			<button ng-click="nextQuestion()" class="next-question">Next</button>
+		<div class="form-data__final-area">
+			<button ng-click="nextQuestion()" class="next-question">Submit</button>
 		</div>
 	</div>
-
-	<div ng-show="quizOver">
+	</form>
+	<!-- <div ng-show="quizOver">
 		<h2>Quiz is over</h2>
 		<h3>{{score}}</h3>
 		<button ng-click="reset()">Play again</button>
-	</div>
+	</div> -->
+
+<div ng-show="quizOver" class="body-greet">
+    <form class="form-data__greetings">
+      <h3>Quiz is over!</h3>
+      <p>Your score: [{{score}}]</p>
+      <button ng-click="reset()">Play again</button>
+      </form>
+</div>
 
 </div>
 
-<div class="intro" ng-show="!inProgress">
-	<p>{{quiz}}</p>
+<div  ng-show="!inProgress" class="body-greet">
+	<form class="form-data__greetings" >
+	<h3>{{quiz}}</h3>
 	<button id="startQuiz" ng-click="start()">Start the Quiz</button>
+	</form>
+</div>
+
 </div>

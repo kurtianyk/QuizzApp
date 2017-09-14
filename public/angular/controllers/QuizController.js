@@ -17,6 +17,7 @@ app.directive('quiz', function($http, API_URL, quizFactory,$interval) {
 				scope.getQuestion();
 				scope.QuizTime();
 			};
+			scope.regex = '/^[a-zA-Z ]+$/';
 
 			scope.reset = function() {
 				scope.inProgress = false;
