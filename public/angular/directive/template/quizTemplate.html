@@ -1,16 +1,21 @@
-<div class="index-body">
-<div> {{ Quizname }}</div>
+<div class="greetings-form">
+
+	<div class="timer">
+		<div class="global-timer"> {{ QuizMessage }}</div>
+		<div class="local-timer">{{Message}}</div>
+	</div>
+
 <div class="quiz-area" ng-show="inProgress">
 	<div ng-show="!quizOver">
-	<div> {{ QuizMessage }}</div>
+
 	 <form class="form-data">
 <!-- 		<h2 id="question">{{question}}</h2>
 		<h3 id="hint">{{hint}}</h3> -->
-		<h3>{{question}}<span> *</span></h3>
-          <p>{{hint}}</p>
+		<h3 class="quiz-name">{{question}}</h3>
+          <p class="hint">{{hint}}</p>
 		<ul id="options">
-		<div>{{Message}}</div>
-		<label ng-if="options.length == 0">
+
+		<label  ng-if="options.length == 0">
 					<input type="{{type}}" name="answer" placeholder="My answer">
 		</label>
 			<li ng-if="options.length !== 0" ng-repeat="option in options">
@@ -44,9 +49,9 @@
 
 <div  ng-show="!inProgress" class="body-greet">
 	<form class="form-data__greetings" >
+		<div> <h2>{{ Quizname }}</h2></div>
 	<h3>{{quiz}}</h3>
-	<button id="startQuiz" ng-click="start()">Start the Quiz</button>
+	<button id="startQuiz" class="start-button" ng-click="start()">Start the Quiz</button>
 	</form>
 </div>
-
 </div>

@@ -1,103 +1,74 @@
-.main-page-logo{
-  margin-top: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow-x: hidden;
+ul {
+  list-style-type: none;
 }
 
-.main-page-logo__text{
-  font-size: 100px;
+.white-block {
+  position: fixed;
+  background-color: #FBE9E7;
+  width: 100%;
+  top: 40%;
+  height: 100%;
 }
-
-.tagline{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.test-tagline{
-  font-family:Comic Sans MS, cursive, sans-serif;
-  font-size: 32px;
-}
-
-.controls{
-  margin-top: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-a:active{
--webkit-box-shadow: 0 0 5px rgba(0,0,0, .75);
--moz-box-shadow: 0 0 5px rgba(0,0,0, .75);
-box-shadow: 0 0 5px rgba(0,0,0, .75);
-}
-
-.button {
-    padding: 8px 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    margin-left:10px;
-    cursor: pointer;
-  }
-
-.quiz {
-    background-color: white;
-    color: black;
-    border: 1px solid ;
-    border-radius: 5px
-}
-
-a{
-  text-decoration: none !important;
-}
-
-
-
 
 .index-body {
-  background-color: #FBE9E7;
-  font-family: 'Raleway';
-  /*margin-top: 10%;
-  margin-bottom: 2%;*/
-  background-image: linear-gradient(to bottom, rgb(219, 68, 55) 25%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 100%, rgb(4, 120, 21) 100%);
+ background-color: #DB4437;
+ font-family: 'Saira';
+ margin-top: 10%;
+ margin-bottom: 5%;
 }
 
-h2 {
-  font-size: 5vh;
-}
-
-h3 {
-  font-size: 3vh;
-}
-
-p,
-span {
-  font-size: 2.2vh;
-}
-
-span {
-  color: red;
-}
-
-.form-data {
+.greetings-form {
   position: relative;
   margin: 0 auto;
-  padding: 4em;
+  padding: 9%;
   background-color: #FFFFFF;
   border-top: 0.5em solid #F98B82;
   width: 50%;
+  height: 90%;
+  max-height: 90%;
+  min-height: 90%;
   max-width: 90%;
   min-width: 50%;
-  height: auto;
+}
+
+.greetings-form h2 {
+  text-align: center;
+  font-size: 6vh;
+}
+
+
+.test-tagline {
+  text-align: center;
+  font-size: 3vh;
+}
+
+.greetings-form a {
+  font-size: 3vh;
+  color: white;
+  text-decoration: none;
+}
+
+.greetings-form button {
+  height: 3em;
+  display: block;
+  vertical-align: middle;
+  background-color: #4285F4;
+  color: white;
+  border: none;
+  border-radius: 0.3em;
+  cursor: pointer;
+  font-size: 0.875em;
+  display: block;
+  margin: 0 auto;
+  width: 25%;
+}
+
+.form-data label {
+  vertical-align: middle;
+  margin: -3em;
 }
 
 .form-data input {
-  padding: 0.6em;
   font-size: 2vh;
   border: none;
   border-bottom: 0.1em solid #E0E0E0;
@@ -116,78 +87,41 @@ span {
   -moz-transition-duration: 0.5s;
 }
 
-input[type='text'] {
+.timer {
+  color: #DB4437;
+  z-index: 999;
   box-sizing: border-box;
-  width: 50%;
-
+  width: 100%;
+  font-size: 2vh;
 }
 
-.form-data__final-area {
-  margin-top: 1em;
+.global-timer {
+  float: left
 }
 
-input[type="radio"],
-input[type="checkbox"] {
-  cursor: pointer;
-  vertical-align: middle;
-  width: 1.4em;
-  height: 1.4em;
+.local-timer {
+  float:right;
 }
 
-button {
-  height: 4em;
+.start-button {
+  font-size: 3vh;
+  height: 3em;
   display: block;
+  vertical-align: middle;
   background-color: #4285F4;
   color: white;
   border: none;
   border-radius: 0.3em;
   cursor: pointer;
-  font-size: 0.875em;
   display: block;
-  margin-top: 2em;
-  width: 15%;
-}
-
-.form-data__final-area a {
-  font-size: 2.5vh;
-  color: white;
-  text-decoration: none;
-}
-
-.body-greet {
-  background-color: #DB4437;
-  font-family: 'Raleway';
- /* margin-top: 10%;*/
-}
-
-.form-data__greetings {
-  position: relative;
   margin: 0 auto;
-  padding: 10%;
-  background-color: #FFFFFF;
-  border-top: 0.5em solid #F98B82;
-  width: 50%;
-  height: 90%;
-  max-height: 90%;
-  min-height: 90%;
-  max-width: 90%;
-  min-width: 50%;
+  width: 25%;
 }
 
-.form-data__greetings > * {
-  font-family: monospace;
-  text-align: center;
+.quiz-name {
+  font-size: 2vw;
 }
 
-
-.form-data__greetings a {
-  font-size: 3vh;
-  color: white;
-  text-decoration: none;
-}
-
-.form-data__greetings button {
-  margin: 0 auto;
-  width: 40%;
-  height: 5em;
+.hint {
+  font-size: 1.2vw;
 }

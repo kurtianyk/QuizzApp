@@ -1,5 +1,5 @@
 app.controller('QuizController', function($http, $scope, API_URL){
-	
+
 });
 
 app.directive('quiz', function($http, API_URL, quizFactory,$interval) {
@@ -29,18 +29,18 @@ app.directive('quiz', function($http, API_URL, quizFactory,$interval) {
 
 			scope.Quizname = quizFactory.getQuizname();
 			scope.Timelimit = quizFactory.getTimelimit();
-			
+
 			scope.QuizTime = function () {
                 scope.QuizMessage = "";
                  $interval(function () {
                     var time = scope.Timelimit--;
-                    scope.QuizMessage = "You have " + time + " seconds for this quiz";
+                    scope.QuizMessage = "Time left " + time + " for quiz";
                     if(time == 0){
                     	scope.endQuiz();
                     }
                 }, 1000);
             };
- 			 
+
             scope.endQuiz = function () {
             		$http({
       					method: 'POST',
@@ -68,7 +68,7 @@ app.directive('quiz', function($http, API_URL, quizFactory,$interval) {
 						if(scope.interval !== undefined){
 							$interval.cancel(scope.interval);
 						}
-						
+
 						scope.StartTimer();
 					}
 				} else {
@@ -78,10 +78,10 @@ app.directive('quiz', function($http, API_URL, quizFactory,$interval) {
 
 			scope.StartTimer = function () {
                 scope.Message = "";
- 
+
                   scope.interval =  $interval(function () {
                     var time = scope.timerQ--;
-                    scope.Message = "You have " + time + " seconds for this question";
+                    scope.Message = "Time left " + time + " for this question";
                     if(time == 0){
                     	scope.nextQuestion();
                     }
@@ -98,7 +98,7 @@ app.directive('quiz', function($http, API_URL, quizFactory,$interval) {
 					scope.data[scope.id].choise.push($('input[type=radio]:checked').val());
 				}
 				else if($('input[type=checkbox]:checked').val()){
-					$.each($("input[type='checkbox']:checked"), function(){            
+					$.each($("input[type='checkbox']:checked"), function(){
                		 scope.data[scope.id].choise.push($(this).val());
             		});
 				}
@@ -109,9 +109,9 @@ app.directive('quiz', function($http, API_URL, quizFactory,$interval) {
 				scope.getQuestion();
 			}
 
-			
 
-			
+
+
 		}
 	}
 });
