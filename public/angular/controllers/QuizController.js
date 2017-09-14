@@ -1,14 +1,8 @@
 app.controller('QuizController', function($http, $scope, API_URL){
-	$http.get(API_URL + "/test").then(function(response){
-              $scope.quiz = response.data.testName;
-              $scope.timelimit = response.data.timelimit;
-            },
-            function(error){ $scope.testListEmpty = "You haven't tests";
-        });
-
+	
 });
 
-app.directive('quiz', function($http, API_URL, quizFactory) {
+app.directive('quiz', function($http, API_URL, quizFactory,$interval) {
 	return {
 		restrict: 'AE',
 		scope: {},
@@ -19,18 +13,46 @@ app.directive('quiz', function($http, API_URL, quizFactory) {
 				scope.quizOver = false;
 				scope.inProgress = true;
 				scope.data = [];
+				scope.interval;
 				scope.getQuestion();
+				scope.QuizTime();
 			};
 
 			scope.reset = function() {
 				scope.inProgress = false;
 				scope.score = 0;
+				location.reload();
 			}
+
 			// TODO timer
-			scope.getTimer = function() {
 
-			};
-
+			scope.Quizname = quizFactory.getQuizname();
+			scope.Timelimit = quizFactory.getTimelimit();
+			
+			scope.QuizTime = function () {
+                scope.QuizMessage = "";
+                 $interval(function () {
+                    var time = scope.Timelimit--;
+                    scope.QuizMessage = "You have " + time + " seconds for this quiz";
+                    if(time == 0){
+                    	scope.endQuiz();
+                    }
+                }, 1000);
+            };
+ 			 
+            scope.endQuiz = function () {
+            		$http({
+      					method: 'POST',
+      					url: API_URL + '/add',
+      					data: scope.data,
+      					headers: {'Content-Type': 'application/json'}
+    				}).then(function(response){
+      					scope.score = response.data.result;
+       				 },function(error){
+      					console.log(error);
+        			});
+					scope.quizOver = true;
+            	};
 			scope.getQuestion = function() {
 				var q = quizFactory.getQuestion(scope.id);
 				if(q) {
@@ -41,23 +63,29 @@ app.directive('quiz', function($http, API_URL, quizFactory) {
 					scope.type =  q.type;
 					scope.hint =  q.hint;
 					scope.timerQ = q.timelimit;
+					if(scope.timerQ !==null){
+						if(scope.interval !== undefined){
+							$interval.cancel(scope.interval);
+						}
+						
+						scope.StartTimer();
+					}
 				} else {
-
-					$http({
-      					method: 'POST',
-      					url: API_URL + '/add',
-      					data: scope.data,
-      					headers: {'Content-Type': 'application/json'}
-    				}).then(function(response){
-      					scope.score = response.data.result;
-      					console.log(scope.score);
-       				 },function(error){
-      					console.log(error);
-        			});
-					// scope.score = resultFactory.getResult(scope.data);
-					scope.quizOver = true;
+					scope.endQuiz();
 				}
 			};
+
+			scope.StartTimer = function () {
+                scope.Message = "";
+ 
+                  scope.interval =  $interval(function () {
+                    var time = scope.timerQ--;
+                    scope.Message = "You have " + time + " seconds for this question";
+                    if(time == 0){
+                    	scope.nextQuestion();
+                    }
+                }, 1000);
+            };
 
 			scope.nextQuestion = function() {
 				scope.data[scope.id].choise = [];
@@ -80,7 +108,7 @@ app.directive('quiz', function($http, API_URL, quizFactory) {
 				scope.getQuestion();
 			}
 
-			scope.reset();
+			
 
 			
 		}
@@ -89,9 +117,13 @@ app.directive('quiz', function($http, API_URL, quizFactory) {
 
 app.factory('quizFactory', function($http, API_URL) {
 	var questions;
+	var quiz;
+	var timelimit;
 
 	$http.get(API_URL + "/test").then(function(response){
               questions = response.data.questions;
+              quiz = response.data.testName;
+              timelimit = response.data.timelimit;
             },
             function(error){ $scope.testListEmpty = "You haven't tests";
         });
@@ -103,27 +135,12 @@ app.factory('quizFactory', function($http, API_URL) {
 			} else {
 				return false;
 			}
+		},
+		getQuizname: function() {
+				return quiz;
+		},
+		getTimelimit: function() {
+				return timelimit;
 		}
-
 	};
 });
-
-// app.factory('resultFactory', function($http, API_URL) {
-	
-// 	return {
-// 		getResult: function(res) {
-// 			$http({
-//       			method: 'POST',
-//       			url: API_URL + '/add',
-//       			data: res,
-//       			headers: {'Content-Type': 'application/json'}
-//     		}).then(function(response){
-//       			return response.data;
-//        		 },function(error){
-//       			console.log(error);
-//         	});
-
-// 		}
-
-// 	};
-// });

@@ -1,9 +1,11 @@
+<div> {{ Quizname }}</div>
 <div class="quiz-area" ng-show="inProgress">
 	<div ng-show="!quizOver">
+	<div> {{ QuizMessage }}</div>
 		<h2 id="question">{{question}}</h2>
 		<h3 id="hint">{{hint}}</h3>
 		<ul id="options">
-
+		<div>{{Message}}</div>
 		<label ng-if="options.length == 0">
 					<input type="{{type}}" name="answer">
 		</label>
